@@ -12,35 +12,46 @@
     --font-manrope: 'Manrope', system-ui, sans-serif;
   }
 
-  html {
-    font-family: var(--font-sans);
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
+  html { font-family: var(--font-sans); font-feature-settings: "rlig" 1, "calt" 1; }
+  body { @apply antialiased bg-[#070912]; }
+}
 
-  body {
-    @apply antialiased;
+/* Subtle anime ambience */
+@layer utilities {
+  .animate-in {
+    animation-name: animateIn; animation-duration: 350ms;
+    --tw-enter-opacity: initial; --tw-enter-scale: initial; --tw-enter-rotate: initial; --tw-enter-translate-x: initial; --tw-enter-translate-y: initial;
+  }
+  .animate-out {
+    animation-name: animateOut; animation-duration: 350ms;
+    --tw-exit-opacity: initial; --tw-exit-scale: initial; --tw-exit-rotate: initial; --tw-exit-translate-x: initial; --tw-exit-translate-y: initial;
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
-@layer utilities {
-  .animate-in {
-    animation-name: animateIn;
-    animation-duration: 350ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
-  }
+/* Keyframes for twinkling stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1); }
+}
+.twinkle { animation: twinkle 2s infinite ease-in-out; }
 
-  .animate-out {
-    animation-name: animateOut;
-    animation-duration: 350ms;
-    --tw-exit-opacity: initial;
-    --tw-exit-scale: initial;
-    --tw-exit-rotate: initial;
-    --tw-exit-translate-x: initial;
-    --tw-exit-translate-y: initial;
-  }
+/* Sakura petals */
+.sakura {
+  width: 14px; height: 10px; border-radius: 8px 8px 12px 12px; position: absolute; top: -5%;
+  background: radial-gradient(circle at 30% 30%, #ffd1e8, #ff8fb3 60%, #ff6fa3 100%);
+  box-shadow: 0 2px 8px rgba(255,111,163,0.3);
+  opacity: 0.85;
+  transform-origin: 50% -20px;
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+@keyframes fall {
+  0% { transform: translate3d(0, -10%, 0) rotate(0deg); }
+  100% { transform: translate3d(0, 120vh, 0) rotate(360deg); }
+}
+@keyframes sway {
+  0% { margin-left: 0; }
+  50% { margin-left: 40px; }
+  100% { margin-left: 0; }
 }

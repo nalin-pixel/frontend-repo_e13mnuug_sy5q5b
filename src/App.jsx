@@ -7,10 +7,14 @@ import Badges from './components/Badges'
 import Experience from './components/Experience'
 import Goals from './components/Goals'
 import Contact from './components/Contact'
+import AnimeBackground from './components/AnimeBackground'
 
 function App() {
   return (
-    <div className="min-h-screen w-full bg-slate-950 text-white">
+    <div className="min-h-screen w-full bg-[#070912] text-white relative">
+      {/* Ambient anime background layers (stars, aurora, petals) */}
+      <AnimeBackground />
+
       <Hero />
       <Journey />
       <Skills />
